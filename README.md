@@ -9,3 +9,5 @@ Este es mi primer repositorio de prueba en GitHub.
 ## Autor
 
 Mafe54321
+
+Claude Code funciona perfectamente en ambas Macs
