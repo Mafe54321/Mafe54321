@@ -6,7 +6,7 @@
 
 [![Made with](https://img.shields.io/badge/Made%20with-Claude%20Code-296BFF?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.com/claude-code)
 [![Status](https://img.shields.io/badge/Status-Complete-09FC04?style=for-the-badge)](https://github.com/Mafe54321/Mafe54321)
-[![Version](https://img.shields.io/badge/Version-1.0-296BFF?style=for-the-badge)](https://github.com/Mafe54321/Mafe54321/blob/main/BambuSend_UX_Analysis.md)
+[![View Project](https://img.shields.io/badge/View-Project-296BFF?style=for-the-badge)](https://github.com/Mafe54321/Mafe54321/tree/main/bambusend)
 
 </div>
 
@@ -81,17 +81,38 @@ Análisis completo de UX/UI del sitio web [BambuSend](https://www.bambusend.com/
 
 ---
 
-## 📁 Contenido del Repositorio
+## 📁 Estructura del Repositorio
 
-### 📄 Documentos
+```
+Mafe54321/
+├── index.html                      # Presentación web interactiva
+├── README.md                       # Este archivo
+├── test.txt                        # Archivo de prueba
+└── bambusend/                      # 📂 Proyecto BambuSend (TODO aquí)
+    ├── README.md                   # Resumen del proyecto
+    ├── PROJECT_CONTEXT.md          # Contexto para Claude/equipo
+    ├── analysis/
+    │   └── BambuSend_UX_Analysis.md  # Análisis completo (60 slides)
+    ├── presentation/
+    │   └── index.html              # Presentación interactiva
+    ├── assets/
+    │   └── (para mockups/imágenes)
+    └── meeting-notes/
+        └── (notas de reuniones)
+```
 
-- **[`BambuSend_UX_Analysis.md`](./BambuSend_UX_Analysis.md)** - Presentación completa (60 slides)
-  - Análisis detallado de diseño actual
-  - Benchmarking con competencia
-  - Recomendaciones priorizadas (corto/mediano/largo plazo)
-  - Cálculo de ROI: $41K inversión → **548% retorno**
+### 📂 Proyecto Principal: BambuSend
 
-- **[`test.txt`](./test.txt)** - Archivo de prueba inicial
+**Todo el contenido del análisis está organizado en [`/bambusend/`](./bambusend/)**
+
+- **[Ver Proyecto BambuSend →](./bambusend/)** - Análisis UX/UI completo
+  - 📊 Análisis detallado (60 slides)
+  - 🎨 Propuestas de diseño con ROI
+  - 📈 Cálculo de impacto: $41K inversión → **548% retorno**
+  - 👥 Comparación con competencia
+  - 🎯 Recomendaciones priorizadas
+
+**[🌐 Ver Presentación Interactiva →](https://mafe54321.github.io/Mafe54321/)**
 
 ---
 

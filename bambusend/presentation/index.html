@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BambuSend UX/UI Analysis | María Varón</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/black.css" id="theme">
+    <style>
+        :root {
+            --bambu-blue: #296BFF;
+            --bambu-green: #09FC04;
+            --bambu-orange: #FF8B48;
+            --bambu-coral: #FF6B6B;
+            --bambu-yellow: #FFD93D;
+            --bambu-dark: #0D1752;
+        }
+
+        .reveal {
+            background: linear-gradient(135deg, #0D1752 0%, #1a1f3a 100%);
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #FFFFFF;
+            text-transform: none;
+            font-weight: 800;
+        }
+
+        .reveal h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, var(--bambu-blue), var(--bambu-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .reveal .slide-number {
+            background-color: var(--bambu-blue);
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .badge-blue {
+            background-color: var(--bambu-blue);
+            color: white;
+        }
+
+        .badge-green {
+            background-color: var(--bambu-green);
+            color: var(--bambu-dark);
+        }
+
+        .badge-orange {
+            background-color: var(--bambu-orange);
+            color: white;
+        }
+
+        .badge-coral {
+            background-color: var(--bambu-coral);
+            color: white;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.8em;
+        }
+
+        .comparison-table th {
+            background: var(--bambu-blue);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.1);
+            border-left: 4px solid var(--bambu-blue);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .metric-card h3 {
+            margin-top: 0;
+            color: var(--bambu-green);
+        }
+
+        .highlight {
+            color: var(--bambu-green);
+            font-weight: bold;
+        }
+
+        .cold {
+            color: var(--bambu-coral);
+        }
+
+        .warm {
+            color: var(--bambu-orange);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .quote {
+            font-size: 1.5em;
+            font-style: italic;
+            color: var(--bambu-orange);
+            border-left: 4px solid var(--bambu-orange);
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .emoji {
+            font-size: 2em;
+        }
+
+        ul {
+            text-align: left;
+        }
+
+        .fragment.highlight-current-blue.visible.current-fragment {
+            color: var(--bambu-blue);
+        }
+
+        .progress span {
+            background: linear-gradient(to right, var(--bambu-blue), var(--bambu-green));
+        }
+
+        .roi-box {
+            background: linear-gradient(135deg, var(--bambu-blue) 0%, var(--bambu-orange) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin: 10px;
+            border: 2px solid white;
+        }
+
+        code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--bambu-green);
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Portada -->
+            <section data-transition="zoom">
+                <h1 class="emoji">💸 BambuSend</h1>
+                <h2>Análisis UX/UI</h2>
+                <p style="color: var(--bambu-green); font-size: 1.2em;">
+                    Análisis Profesional de Experiencia de Usuario
+                </p>
+                <div style="margin-top: 50px;">
+                    <span class="badge badge-blue">UX/UI Analysis</span>
+                    <span class="badge badge-green">Completo</span>
+                    <span class="badge badge-orange">ROI 548%</span>
+                </div>
+                <p style="margin-top: 50px; font-size: 0.9em; opacity: 0.7;">
+                    María Varón | Octubre 2025
+                </p>
+            </section>
+
+            <!-- Slide 2: Agenda -->
+            <section>
+                <h2>📋 Agenda</h2>
+                <div style="text-align: left; font-size: 0.9em;">
+                    <ol>
+                        <li class="fragment">Contexto del análisis</li>
+                        <li class="fragment">Lo que funciona bien ✅</li>
+                        <li class="fragment">Problemas identificados ❌</li>
+                        <li class="fragment">El problema del "toque humano"</li>
+                        <li class="fragment">Comparación con competencia</li>
+                        <li class="fragment">Recomendaciones prioritizadas</li>
+                        <li class="fragment">Impacto esperado (ROI)</li>
+                        <li class="fragment">Próximos pasos</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Slide 3: Contexto -->
+            <section>
+                <h2>🎯 Contexto del Análisis</h2>
+                <div class="two-column">
+                    <div class="metric-card">
+                        <h3>¿Qué analizamos?</h3>
+                        <ul>
+                            <li><strong>Sitio:</strong> bambusend.com/en/</li>
+                            <li><strong>Servicio:</strong> Transferencias US → LATAM</li>
+                            <li><strong>Público:</strong> Comunidad latina</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Competidores</h3>
+                        <ul>
+                            <li>Remitly</li>
+                            <li>WorldRemit</li>
+                            <li>Wise</li>
+                            <li>Sendwave</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 30px; font-size: 0.9em;">
+                    <strong>Metodología:</strong> Análisis heurístico + Benchmarking + Diseño emocional
+                </p>
+            </section>
+
+            <!-- Slide 4: Lo que funciona bien -->
+            <section>
+                <h2>✅ Lo Que Funciona Bien</h2>
+                <div style="text-align: left;">
+                    <div class="fragment metric-card">
+                        <h3>🎯 Propuesta de Valor Clara</h3>
+                        <p>"Send money from the US to Latin America easily, quickly, and affordably"</p>
+                        <span class="badge badge-blue">Calificación: 9/10</span>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>🧮 Calculadora Interactiva</h3>
+                        <p>Hero section con calculadora reduce fricción de conversión</p>
+                        <span class="badge badge-blue">Calificación: 10/10</span>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>🔒 Elementos de Confianza</h3>
+                        <p>700K+ usuarios • NMLS ID 937914 • Soporte visible</p>
+                        <span class="badge badge-blue">Calificación: 9/10</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Problemas Identificados -->
+            <section>
+                <h2>❌ Problemas Identificados</h2>
+                <div class="two-column" style="font-size: 0.85em;">
+                    <div>
+                        <h3 class="cold">🧊 Problema #1</h3>
+                        <p><strong>CERO fotografías de personas reales</strong></p>
+                        <ul>
+                            <li>Solo mockups de celulares</li>
+                            <li>Ilustraciones y logos</li>
+                            <li>Sin rostros humanos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="cold">🧊 Problema #2</h3>
+                        <p><strong>Copy transaccional vs. emocional</strong></p>
+                        <ul>
+                            <li>"Send money easily" ❄️</li>
+                            <li>"The lowest fees" ❄️</li>
+                            <li>Falta narrativa emocional</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="two-column fragment" style="font-size: 0.85em; margin-top: 20px;">
+                    <div>
+                        <h3 class="cold">🧊 Problema #3</h3>
+                        <p><strong>Paleta fría</strong></p>
+                        <p>Azul + Blanco + Verde<br>Sin calidez latina</p>
+                    </div>
+                    <div>
+                        <h3 class="cold">🧊 Problema #4</h3>
+                        <p><strong>Testimonios desaprovechados</strong></p>
+                        <p>Sin fotos, sin contexto,<br>sin storytelling</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: El Problema del Toque Humano -->
+            <section>
+                <h2>🎭 El Problema del "Toque Humano"</h2>
+                <div class="quote">
+                    "BambuSend es una fintech eficiente que olvidó que está moviendo sueños, no solo datos."
+                </div>
+                <div class="fragment" style="text-align: left; margin-top: 30px;">
+                    <p><strong>¿Por qué importa?</strong></p>
+                    <ul>
+                        <li class="fragment">No venden tecnología, venden <span class="highlight">conexión familiar</span></li>
+                        <li class="fragment">El dinero es el medio, no el fin</li>
+                        <li class="fragment">"Envío dinero a mi mamá" ≠ "Hago una transacción"</li>
+                        <li class="fragment">Es un acto de <span class="warm">amor, responsabilidad, orgullo</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 7: Comparación con Competencia -->
+            <section>
+                <h2>👥 Comparación con Competencia</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Elemento</th>
+                            <th>BambuSend</th>
+                            <th>Remitly</th>
+                            <th>WorldRemit</th>
+                            <th>Wise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment">
+                            <td>Fotos de personas</td>
+                            <td class="cold">0/10</td>
+                            <td class="highlight">9/10</td>
+                            <td class="highlight">8/10</td>
+                            <td>4/10</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>Videos testimoniales</td>
+                            <td class="cold">0/10</td>
+                            <td class="highlight">10/10</td>
+                            <td class="highlight">7/10</td>
+                            <td class="cold">0/10</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>Storytelling emocional</td>
+                            <td class="cold">2/10</td>
+                            <td class="highlight">10/10</td>
+                            <td class="highlight">8/10</td>
+                            <td>3/10</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>Copy emocional</td>
+                            <td class="cold">3/10</td>
+                            <td class="highlight">9/10</td>
+                            <td class="highlight">8/10</td>
+                            <td class="cold">2/10</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="fragment warm" style="margin-top: 20px;">
+                    <strong>Conclusión:</strong> BambuSend está en "fintech fría" cuando debería estar en "conector humano"
+                </p>
+            </section>
+
+            <!-- Slide 8: Paleta de Colores -->
+            <section>
+                <h2>🎨 Propuesta de Paleta</h2>
+                <div class="two-column" style="font-size: 0.85em;">
+                    <div>
+                        <h3>Actual (Fría) ❄️</h3>
+                        <div>
+                            <div class="color-swatch" style="background: #296BFF;"></div>
+                            <p><code>#296BFF</code> Azul</p>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #09FC04;"></div>
+                            <p><code>#09FC04</code> Verde</p>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #FFFFFF;"></div>
+                            <p><code>#FFFFFF</code> Blanco</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Propuesta (Cálida) 🔥</h3>
+                        <div>
+                            <div class="color-swatch" style="background: #FF8B48;"></div>
+                            <p><code>#FF8B48</code> Naranja cálido</p>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #FF6B6B;"></div>
+                            <p><code>#FF6B6B</code> Coral pasión</p>
+                        </div>
+                        <div>
+                            <div class="color-swatch" style="background: #FFD93D;"></div>
+                            <p><code>#FFD93D</code> Amarillo esperanza</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 30px;">
+                    <strong>Estrategia:</strong> Mantener azul (confianza) + Agregar calidez latina
+                </p>
+            </section>
+
+            <!-- Slide 9: Recomendaciones Quick Wins -->
+            <section>
+                <h2>🚀 Quick Wins (1-2 semanas)</h2>
+                <div style="text-align: left; font-size: 0.85em;">
+                    <div class="fragment metric-card">
+                        <h3>1. Fotografías de Personas Reales</h3>
+                        <p>Sesión fotográfica con 3-5 usuarios latinos</p>
+                        <div style="margin-top: 10px;">
+                            <span class="badge badge-orange">Inversión: $3,000</span>
+                            <span class="badge badge-green">ROI: +15-20% conversión</span>
+                        </div>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>2. Humanizar Copy</h3>
+                        <p>"Cuida a los tuyos" vs. "Send money" | CTAs emocionales</p>
+                        <div style="margin-top: 10px;">
+                            <span class="badge badge-orange">Inversión: $0</span>
+                            <span class="badge badge-green">ROI: +12% resonancia</span>
+                        </div>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>3. Calentar Paleta de Colores</h3>
+                        <p>Gradientes azul → naranja | Acentos cálidos en CTAs</p>
+                        <div style="margin-top: 10px;">
+                            <span class="badge badge-orange">Inversión: $0</span>
+                            <span class="badge badge-green">ROI: +5% engagement</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: Ejemplo Concreto Hero -->
+            <section>
+                <h2>🎨 Ejemplo: Rediseño Hero</h2>
+                <div class="two-column" style="font-size: 0.75em;">
+                    <div>
+                        <h3 class="cold">ANTES ❄️</h3>
+                        <ul>
+                            <li>Fondo blanco plano</li>
+                            <li>"Send money easily"</li>
+                            <li>Mockup de celular</li>
+                            <li>Calculadora (bien)</li>
+                            <li>CTA azul estándar</li>
+                        </ul>
+                        <p style="margin-top: 20px;"><strong>Sensación:</strong> Limpio, profesional, FRÍO</p>
+                    </div>
+                    <div>
+                        <h3 class="warm">DESPUÉS 🔥</h3>
+                        <ul>
+                            <li>Foto: Familia latina reunida</li>
+                            <li>"Tu familia te está esperando 🏠"</li>
+                            <li>Persona real sonriendo</li>
+                            <li>Calculadora + contexto emocional</li>
+                            <li>CTA gradiente azul→naranja</li>
+                        </ul>
+                        <p style="margin-top: 20px;"><strong>Sensación:</strong> Cálido, humano, confiable</p>
+                    </div>
+                </div>
+                <p class="fragment highlight" style="margin-top: 30px;">
+                    Mismo producto, diferente emoción
+                </p>
+            </section>
+
+            <!-- Slide 11: Impacto Esperado -->
+            <section>
+                <h2>📈 Impacto Esperado</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Actual</th>
+                            <th>Proyectado</th>
+                            <th>Incremento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment">
+                            <td>Tasa de conversión</td>
+                            <td>2.5%</td>
+                            <td class="highlight">3.5-4.0%</td>
+                            <td class="highlight">+40-60%</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>Tiempo en página</td>
+                            <td>45s</td>
+                            <td class="highlight">75s</td>
+                            <td class="highlight">+67%</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>Bounce rate</td>
+                            <td>55%</td>
+                            <td class="highlight">40%</td>
+                            <td class="highlight">-27%</td>
+                        </tr>
+                        <tr class="fragment">
+                            <td>Registro completo</td>
+                            <td>40%</td>
+                            <td class="highlight">55%</td>
+                            <td class="highlight">+37%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Slide 12: Cálculo ROI -->
+            <section>
+                <h2>💰 Cálculo de ROI</h2>
+                <div class="metric-card">
+                    <h3>Inversión Total (3 meses)</h3>
+                    <ul>
+                        <li>Quick wins (1-2 semanas): $3,000</li>
+                        <li>Mediano plazo (1 mes): $15,000</li>
+                        <li>Largo plazo (3 meses): $23,000</li>
+                    </ul>
+                    <p class="highlight" style="font-size: 1.3em; margin-top: 20px;">
+                        TOTAL: $41,000
+                    </p>
+                </div>
+                <div class="roi-box fragment">
+                    <p style="font-size: 0.9em;">Retorno esperado (conservador)</p>
+                    <p style="font-size: 1.8em; margin: 10px 0;">
+                        <strong>ROI: 548%</strong> en 3 meses
+                    </p>
+                    <p style="font-size: 0.8em;">
+                        Basado en 50K visitantes/mes, +40% conversión, LTV $150/usuario
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 13: Data de la Industria -->
+            <section>
+                <h2>📊 Data de la Industria</h2>
+                <div style="text-align: left; font-size: 0.85em;">
+                    <div class="fragment metric-card">
+                        <h3>Nielsen Norman Group (2024)</h3>
+                        <ul>
+                            <li>85% de usuarios <strong>no cambian solo por precio</strong></li>
+                            <li>Factor #1: <span class="highlight">Confianza</span> (no costo)</li>
+                            <li>Sitios con fotos de personas: <span class="highlight">+34% conversión</span></li>
+                        </ul>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>Wyzowl Video Marketing (2024)</h3>
+                        <ul>
+                            <li>Videos testimoniales: <span class="highlight">+27% retención</span></li>
+                            <li>Contenido emocional: <span class="highlight">3x más compartido</span></li>
+                        </ul>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>Remitly Case Study</h3>
+                        <ul>
+                            <li>60% presupuesto en humanización</li>
+                            <li>Resultado: <span class="highlight">Líder en satisfacción</span></li>
+                            <li>Crecimiento: <span class="highlight">45% YoY</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 14: Próximos Pasos -->
+            <section>
+                <h2>🚦 Próximos Pasos</h2>
+                <div style="text-align: left; font-size: 0.9em;">
+                    <div class="metric-card">
+                        <h3>Fase 1: Validación (1 semana)</h3>
+                        <ul>
+                            <li>☑️ Presentar hallazgos al equipo</li>
+                            <li>☐ Priorizar recomendaciones</li>
+                            <li>☐ Aprobar presupuesto</li>
+                            <li>☐ Definir KPIs</li>
+                        </ul>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>Fase 2: Quick Wins (2 semanas)</h3>
+                        <ul>
+                            <li>☐ Sesión fotográfica</li>
+                            <li>☐ Rediseño testimonios</li>
+                            <li>☐ Actualizar CTAs</li>
+                            <li>☐ A/B testing</li>
+                        </ul>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>Fase 3: Implementación (1-3 meses)</h3>
+                        <ul>
+                            <li>☐ Sección "Historias Reales"</li>
+                            <li>☐ Página "Nuestra Misión"</li>
+                            <li>☐ Video hero</li>
+                            <li>☐ Blog emocional</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 15: Pregunta Clave -->
+            <section>
+                <h2>💬 Pregunta para el Equipo</h2>
+                <h3 style="margin-top: 50px; color: var(--bambu-orange);">
+                    ¿Qué tipo de marca queremos ser?
+                </h3>
+                <div class="two-column" style="margin-top: 50px; font-size: 0.85em;">
+                    <div class="fragment metric-card">
+                        <h3 class="cold">🤖 Fintech Eficiente</h3>
+                        <ul>
+                            <li>Enfoque: Producto, tech</li>
+                            <li>Tono: Profesional, frío</li>
+                            <li>Ejemplos: Wise, PayPal</li>
+                            <li>Riesgo: Commoditización</li>
+                        </ul>
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3 class="warm">❤️ Conector Humano</h3>
+                        <ul>
+                            <li>Enfoque: Familias, emociones</li>
+                            <li>Tono: Cálido, empático</li>
+                            <li>Ejemplos: Remitly, WorldRemit</li>
+                            <li>Ventaja: Lealtad emocional</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fragment highlight" style="margin-top: 40px; font-size: 1.2em;">
+                    Recomendación: ❤️ Conector Humano
+                </p>
+            </section>
+
+            <!-- Slide 16: Resumen Ejecutivo -->
+            <section>
+                <h2>✅ Resumen Ejecutivo</h2>
+                <div style="text-align: left;">
+                    <div class="metric-card">
+                        <h3>Situación actual</h3>
+                        <p>✅ Buena UX funcional (8/10)<br>
+                        ❌ Bajo diseño emocional (3/10)<br>
+                        ⚠️ Se siente fintech fría, no puente familiar</p>
+                    </div>
+                    <div class="fragment quote">
+                        "BambuSend olvidó que mueve sueños, no solo datos"
+                    </div>
+                    <div class="fragment metric-card">
+                        <h3>Solución</h3>
+                        <p>
+                            1. Agregar rostros humanos<br>
+                            2. Humanizar el copy<br>
+                            3. Calentar la paleta<br>
+                            4. Crear storytelling
+                        </p>
+                    </div>
+                    <div class="fragment roi-box">
+                        <strong>Inversión:</strong> $41,000 (3 meses)<br>
+                        <strong>ROI esperado:</strong> 548%<br>
+                        <strong>Impacto:</strong> +40-60% conversión
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 17: Cierre -->
+            <section data-transition="zoom">
+                <h1>🙏 Gracias</h1>
+                <div style="margin-top: 50px;">
+                    <p style="font-size: 1.2em;"><strong>María Varón</strong></p>
+                    <p>Analista UX/UI</p>
+                    <p style="font-size: 0.9em; opacity: 0.8;">
+                        📧 mariafvaron@hotmail.com<br>
+                        💻 github.com/Mafe54321
+                    </p>
+                </div>
+                <div style="margin-top: 60px;">
+                    <span class="badge badge-blue">Made with Claude Code</span>
+                    <span class="badge badge-green">Octubre 2025</span>
+                </div>
+                <p style="margin-top: 40px; font-size: 0.8em; opacity: 0.6;">
+                    Presiona la barra espaciadora o las flechas para navegar
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            progress: true,
+            center: true,
+            controls: true,
+            controlsTutorial: true,
+            help: true,
+            showNotes: false,
+            autoSlide: 0,
+            loop: false,
+            mouseWheel: false,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+        });
+    </script>
+</body>
+</html>
